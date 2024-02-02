@@ -1,12 +1,11 @@
 import { Button } from "antd";
 import "./App.css";
+import Home from "./Home";
 
 function App() {
 	return (
 		<div className="App">
-			<Button type="primary" className="w-full">
-				Button
-			</Button>
+			<Home />
 		</div>
 	);
 }
