@@ -1,6 +1,6 @@
 // YourLoginComponent.js
 import React, { useState, useContext } from 'react';
-import { FirebaseContext, auth } from './FirebaseContext';
+import { FirebaseContext, auth } from './contexts/FirebaseContext';
 
 const YourLoginComponent = () => {
   const firebaseAuth = useContext(FirebaseContext);
