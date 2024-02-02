@@ -1,12 +1,16 @@
-import { Button } from "antd";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./Home";
+import Settings from "./Settings";
+import Post from "./Post";
 
 function App() {
 	return (
-		<div className="App">
-			<Home />
-		</div>
+		<Routes>
+			<Route path="/" element={<Home />} />
+			<Route path="/settings" element={<Settings />} />
+			<Route path="/posts/:id" element={<Post />} />
+		</Routes>
 	);
 }
 
