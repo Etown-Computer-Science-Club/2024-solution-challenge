@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Tabs, Card, Avatar } from "antd";
 import { SettingOutlined, UserOutlined, MessageOutlined, BellOutlined } from "@ant-design/icons";
+import Settings from "./Settings"; // Importing the Settings component
+import Post from "./Post"; // Importing the Settings component
 
 const { TabPane } = Tabs;
 
 const Home = () => {
+	const [activeTab, setActiveTab] = useState("1"); // State to manage active tab
+
+	const handleTabChange = (key) => {
+		setActiveTab(key);
+	};
+
 	return (
 		<div className="max-w-screen-lg mx-auto p-4">
-			<Tabs defaultActiveKey="1" className="mb-4">
+			<Tabs defaultActiveKey="1" activeKey={activeTab} onChange={handleTabChange} className="mb-4">
 				<TabPane tab={<TabIcon icon={<MessageOutlined />} text="New Posts" />} key="1">
-					{/* Content of New Posts */}
+					<Post/>{/* Content of New Posts */}
 				</TabPane>
 				<TabPane tab={<TabIcon icon={<BellOutlined />} text="For You" />} key="2">
 					{/* Content for You */}
@@ -21,7 +29,7 @@ const Home = () => {
 					{/* Content of Your Account */}
 				</TabPane>
 				<TabPane tab={<TabIcon icon={<SettingOutlined />} text="Settings" />} key="5">
-					{/* Content of Settings */}
+					<Settings /> {/* Render Settings component when "Settings" tab is active */}
 				</TabPane>
 			</Tabs>
 
