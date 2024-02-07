@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import * as firebase from 'firebase/app';
-import * as firebaseui from 'firebaseui';
+import { getAuth, EmailAuthProvider } from "firebase/auth";
+import * as firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
 
 const firebaseConfig = {
 	apiKey: "AIzaSyCMNhcLRPLQVTqAw1folNMLzbQidmd_crM",
@@ -15,11 +15,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
-export const ui = new firebaseui.auth.AuthUI(firebase.auth());
+export const ui = new firebaseui.auth.AuthUI(auth);
 
 ui.start('#firebaseui-auth-container', {
 	signInOptions: [
-		firebase.auth.EmailAuthProvider.PROVIDER_ID
+		EmailAuthProvider.PROVIDER_ID
 	],
-	// Other config options...
+	signInSuccessUrl: '/',
 });
