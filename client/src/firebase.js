@@ -17,6 +17,8 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const ui = new firebaseui.auth.AuthUI(auth);
 
+// need to work on this: https://github.com/firebase/firebaseui-web/issues/1040
+
 ui.start('#firebaseui-auth-container', {
 	signInOptions: [
 		EmailAuthProvider.PROVIDER_ID
