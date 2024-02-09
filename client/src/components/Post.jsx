@@ -7,7 +7,7 @@ const Post = ({ data }) => {
 
 	return (
 		<div className="h-screen snap-start overflow-hidden">
-			<Card className="shadow-lg h-4/5">
+			<Card className="shadow-lg h-3/4">
 				<div className="flex justify-between items-center mb-4">
 					<div className="text-lg font-semibold">{data.username}</div>
 				</div>
