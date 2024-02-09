@@ -1,5 +1,7 @@
+import { DbService } from "./dbService";
+
 export class PostService {
-	db = DbService("posts");
+	static db = new DbService("posts");
 
 	static async getPosts() {
 		return this.db.getAll();

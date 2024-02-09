@@ -3,6 +3,7 @@ import { Tabs, Card, Avatar } from "antd";
 import { SettingOutlined, UserOutlined, MessageOutlined, BellOutlined } from "@ant-design/icons";
 import Settings from "./Settings"; // Importing the Settings component
 import Post from "./Post"; // Importing the Settings component
+import Posts from "./Posts";
 
 const { TabPane } = Tabs;
 
@@ -15,9 +16,15 @@ const Home = () => {
 
 	return (
 		<div className="max-w-screen-lg mx-auto p-4">
-			<Tabs defaultActiveKey="1" activeKey={activeTab} onChange={handleTabChange} className="mb-4">
+			<Tabs
+				defaultActiveKey="1"
+				activeKey={activeTab}
+				onChange={handleTabChange}
+				className="mb-4"
+			>
 				<TabPane tab={<TabIcon icon={<MessageOutlined />} text="New Posts" />} key="1">
-					<Post/>{/* Content of New Posts */}
+					<Posts />
+					{/* Content of New Posts */}
 				</TabPane>
 				<TabPane tab={<TabIcon icon={<BellOutlined />} text="For You" />} key="2">
 					{/* Content for You */}
