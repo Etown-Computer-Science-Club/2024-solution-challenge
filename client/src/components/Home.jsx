@@ -4,6 +4,8 @@ import { SettingOutlined, UserOutlined, MessageOutlined, BellOutlined } from "@a
 import Settings from "./Settings"; // Importing the Settings component
 import Post from "./Post"; // Importing the Settings component
 import Posts from "./Posts";
+import Message from "./Message"; // Importing the Settings component
+
 
 const { TabPane } = Tabs;
 
@@ -27,7 +29,7 @@ const Home = () => {
 					{/* Content of New Posts */}
 				</TabPane>
 				<TabPane tab={<TabIcon icon={<BellOutlined />} text="For You" />} key="2">
-					{/* Content for You */}
+					<Message/>{/* Content for You */}
 				</TabPane>
 				<TabPane tab={<TabIcon icon={<BellOutlined />} text="News" />} key="3">
 					{/* Content of News */}
