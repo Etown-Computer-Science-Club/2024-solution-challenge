@@ -8,7 +8,7 @@ export class DbService {
 	}
 
 
-	async get() {
+	async get(id) {
 		const docRef = doc(this.collectionRef, id);
 		const docSnap = await getDoc(docRef);
 
