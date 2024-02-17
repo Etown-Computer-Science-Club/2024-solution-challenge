@@ -3,6 +3,7 @@ import { Tabs, Card, Avatar } from "antd";
 import { SettingOutlined, UserOutlined, MessageOutlined, BellOutlined } from "@ant-design/icons";
 import Settings from "./Settings";
 import Posts from "./Posts";
+import Message from "./Message";
 
 const { TabPane } = Tabs;
 
@@ -24,7 +25,10 @@ const Home = () => {
 				<TabPane tab={<TabIcon icon={<MessageOutlined />} text="New Posts" />} key="1">
 					<Posts />
 				</TabPane>
-				<TabPane tab={<TabIcon icon={<SettingOutlined />} text="Settings" />} key="6">
+				<TabPane tab={<TabIcon icon={<MessageOutlined />} text="Messages" />} key="2">
+					<Message />
+				</TabPane>
+				<TabPane tab={<TabIcon icon={<SettingOutlined />} text="Settings" />} key="3">
 					<Settings /> {/* Render Settings component when "Settings" tab is active */}
 				</TabPane>
 			</Tabs>
