@@ -24,3 +24,7 @@ html {
 	  font-size: 16px !important;
 	}
 }
+
+.ant-image-img {
+	width: auto !important;
+}

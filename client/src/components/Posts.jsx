@@ -4,6 +4,7 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import Post from "./Post";
+import { ImageService } from "../services/imageService";
 
 const Posts = () => {
 	const navigate = useNavigate();
@@ -16,6 +17,11 @@ const Posts = () => {
 	useEffect(() => {
 		async function getPosts() {
 			const result = await PostService.getPosts();
+
+			for (let post of result) {
+				const imageUrl = await ImageService.getImageUrl(post.imagePath);
+				post.imageUrl = imageUrl;
+			}
 
 			setPosts([...result, ...result, ...result]);
 		}

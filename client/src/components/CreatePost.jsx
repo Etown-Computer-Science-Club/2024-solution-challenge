@@ -18,14 +18,19 @@ const CreatePost = () => {
 		setIsCreating(true);
 
 		try {
+			const uploadedImage = await ImageService.uploadImage(
+				image[0].uid,
+				image[0].originFileObj
+			);
+
 			const post = await PostService.addPost({
 				title: title,
 				userId: auth.currentUser.uid,
 				name: auth.currentUser.displayName,
 				description: description,
 				cost: cost,
+				imagePath: uploadedImage.metadata.fullPath,
 			});
-			await ImageService.uploadImage(image[0].uid, image[0].originFileObj);
 			navigate(`/posts/${post.id}`);
 		} catch (error) {
 			console.error("Error adding document: ", error);
