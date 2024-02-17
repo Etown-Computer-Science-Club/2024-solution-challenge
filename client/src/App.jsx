@@ -13,9 +13,9 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/settings" element={<Settings />} />
-				<Route path="/create-post" element={<CreatePost />} />
 				<Route path="/posts/:id" element={<Post />} />
 				<Route path="/login" element={<YourComponent />} />
+				<Route path="/create-post" element={<CreatePost />} />
 			</Routes>
 		</FirebaseProvider>
 	);
