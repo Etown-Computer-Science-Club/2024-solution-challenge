@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Select, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { ImageService } from "../services/imageService";
 import { PostService } from "../services/postService";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useGeolocated } from "react-geolocated";
+import { ZipCodeService } from "../services/locationService";
 
 const CreatePost = () => {
+	const { coords, isGeolocationAvailable, isGeolocationEnabled } = useGeolocated();
+	const [locationData, setLocationData] = useState();
 	const [form] = Form.useForm();
 	const navigate = useNavigate();
 	const { Option } = Select;
@@ -30,6 +34,7 @@ const CreatePost = () => {
 				description: description,
 				cost: cost,
 				imagePath: uploadedImage.metadata.fullPath,
+				...locationData,
 			});
 			navigate(`/posts/${post.id}`);
 		} catch (error) {
@@ -48,6 +53,26 @@ const CreatePost = () => {
 
 		return false;
 	};
+
+	useEffect(() => {
+		async function getLocationInfo() {
+			const result = await ZipCodeService.getLocationInfo(coords.latitude, coords.longitude);
+			setLocationData(result);
+		}
+
+		if (coords) {
+			getLocationInfo();
+		}
+	}, [coords]);
+
+	if (!isGeolocationAvailable || !isGeolocationEnabled) {
+		return (
+			<div>
+				<p>Geolocation is not enabled. In order to create a new post, please enable it.</p>
+				<Link to={"/"}>Go Home</Link>
+			</div>
+		);
+	}
 
 	return (
 		<>

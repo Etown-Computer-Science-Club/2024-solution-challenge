@@ -6,12 +6,12 @@ import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
 
 const firebaseConfig = {
-	apiKey: "AIzaSyCMNhcLRPLQVTqAw1folNMLzbQidmd_crM",
-	authDomain: "solution-challenge-junk.firebaseapp.com",
-	projectId: "solution-challenge-junk",
-	storageBucket: "solution-challenge-junk.appspot.com",
-	messagingSenderId: "552368459409",
-	appId: "1:552368459409:web:df527c7c8f28564c98b930",
+	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+	authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+	projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+	storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+	appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
