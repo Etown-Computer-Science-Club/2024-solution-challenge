@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, EmailAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
 
@@ -18,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const ui = new firebaseui.auth.AuthUI(auth);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
 
 ui.start('#firebaseui-auth-container', {
 	signInOptions: [

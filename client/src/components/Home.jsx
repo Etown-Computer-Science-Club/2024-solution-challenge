@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Tabs, Card, Avatar } from "antd";
 import { SettingOutlined, UserOutlined, MessageOutlined, BellOutlined } from "@ant-design/icons";
-import Settings from "./Settings"; // Importing the Settings component
-import Post from "./Post"; // Importing the Settings component
+import Settings from "./Settings";
 import Posts from "./Posts";
-import Message from "./Message"; // Importing the Settings component
-
+import MyPosts from "./MyPosts";
 
 const { TabPane } = Tabs;
 
@@ -28,16 +26,20 @@ const Home = () => {
 					<Posts />
 					{/* Content of New Posts */}
 				</TabPane>
-				<TabPane tab={<TabIcon icon={<BellOutlined />} text="For You" />} key="2">
-					<Message/>{/* Content for You */}
+				<TabPane tab={<TabIcon icon={<MessageOutlined />} text="My Posts" />} key="2">
+					<MyPosts />
+					{/* Content of New Posts */}
 				</TabPane>
-				<TabPane tab={<TabIcon icon={<BellOutlined />} text="News" />} key="3">
+				<TabPane tab={<TabIcon icon={<BellOutlined />} text="For You" />} key="3">
+					{/* Content for You */}
+				</TabPane>
+				<TabPane tab={<TabIcon icon={<BellOutlined />} text="News" />} key="4">
 					{/* Content of News */}
 				</TabPane>
-				<TabPane tab={<TabIcon icon={<UserOutlined />} text="Your Account" />} key="4">
+				<TabPane tab={<TabIcon icon={<UserOutlined />} text="Your Account" />} key="5">
 					{/* Content of Your Account */}
 				</TabPane>
-				<TabPane tab={<TabIcon icon={<SettingOutlined />} text="Settings" />} key="5">
+				<TabPane tab={<TabIcon icon={<SettingOutlined />} text="Settings" />} key="6">
 					<Settings /> {/* Render Settings component when "Settings" tab is active */}
 				</TabPane>
 			</Tabs>
