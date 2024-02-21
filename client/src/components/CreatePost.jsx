@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Form, Input, Button, Select, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { ImageService } from "../services/imageService";
@@ -7,6 +7,7 @@ import { auth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { useGeolocated } from "react-geolocated";
 import { ZipCodeService } from "../services/locationService";
+import { FirebaseContext } from "../contexts/FirebaseContext";
 
 const CreatePost = () => {
 	const { coords, isGeolocationAvailable, isGeolocationEnabled } = useGeolocated();
@@ -15,6 +16,13 @@ const CreatePost = () => {
 	const navigate = useNavigate();
 	const { Option } = Select;
 	const [isCreating, setIsCreating] = useState(false);
+	const user = useContext(FirebaseContext);
+
+	useEffect(() => {
+		if (!user) {
+			navigate("/login");
+		}
+	}, [user, navigate]);
 
 	const onFinish = async (values) => {
 		const { title, description, cost, image } = values;

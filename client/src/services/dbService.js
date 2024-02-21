@@ -1,6 +1,5 @@
 import { db } from "../firebase";
 import { doc, collection, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from "firebase/firestore";
-console.log("success!");
 
 export class DbService {
 	constructor(collectionName) {

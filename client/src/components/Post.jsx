@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Card, Image } from "antd";
-import { GeoPoint } from "firebase/firestore";
-import { useParams } from "react-router-dom";
+import { Card, Button, Image } from "antd";
+import { RollbackOutlined } from "@ant-design/icons";
+import { useParams, useNavigate } from "react-router-dom";
 import { PostService } from "../services/postService";
 import { ImageService } from "../services/imageService";
 
 const Post = ({ data: initData }) => {
 	const [data, setData] = useState(initData);
 	const { id } = useParams();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		async function getPost() {
@@ -43,9 +44,24 @@ const Post = ({ data: initData }) => {
 		return text;
 	}
 
+	function handleBackClick() {
+		navigate("/");
+	}
+
 	return (
 		<div className="h-screen snap-start overflow-hidden">
 			<Card className="shadow-lg h-3/4">
+				{id && (
+					<Button
+						type="primary"
+						shape="round"
+						className="mb-4"
+						icon={<RollbackOutlined />}
+						onClick={handleBackClick}
+					>
+						Back
+					</Button>
+				)}
 				<div className="flex justify-between items-center mb-4">
 					<div className="text-lg font-semibold">Posted by {data.name}</div>
 				</div>
