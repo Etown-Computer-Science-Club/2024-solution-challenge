@@ -115,7 +115,7 @@ const CreatePost = () => {
 						rules={[{ required: true, message: "Please select your post cost!" }]}
 					>
 						<Select placeholder="Select a cost">
-							<Option value="free">Free</Option>
+							<Option value="FREE">Free</Option>
 							<Option value="$">$</Option>
 							<Option value="$$">$$</Option>
 							<Option value="$$$">$$$</Option>
