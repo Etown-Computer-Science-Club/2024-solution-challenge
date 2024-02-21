@@ -53,7 +53,7 @@ const Post = ({ data: initData }) => {
 					<Image src={data.imageUrl} alt={data.title} height="192px" width="" />
 				</div>
 				<div className="flex flex-col items-center gap-1">
-					<div className="text-2xl font-bold">$$$</div>
+					<div className="text-2xl font-bold">{data.cost}</div>
 					<span className="text-xl font-semibold">{data.title}</span>
 					<span className="text-sm bg-gray-200 py-1 px-2 rounded-full">
 						{getLocationInfoText()}
