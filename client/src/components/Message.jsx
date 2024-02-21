@@ -45,7 +45,7 @@ const Message = () => {
 			<List
 				itemLayout="horizontal"
 				dataSource={messages}
-				renderItem={(item, index) => (
+				renderItem={(item) => (
 					<List.Item className={item.sender === "You" ? "message-right" : "message-left"}>
 						<List.Item.Meta
 							avatar={<Avatar>{item.sender.charAt(0)}</Avatar>}
@@ -56,75 +56,17 @@ const Message = () => {
 					</List.Item>
 				)}
 			/>
-			<div className="input-container">
+			<div className="flex align-center mt-10">
 				<Input
 					placeholder="Type a message..."
 					value={inputValue}
 					onChange={handleInputChange}
 					onPressEnter={sendMessage}
 				/>
-				<Button type="primary" onClick={sendMessage}>
+				<Button type="primary" style={{ "flex-shrink": 0 }} onClick={sendMessage}>
 					Send
 				</Button>
 			</div>
-			<style jsx>{`
-				.message-container {
-					display: flex;
-					flex-direction: column;
-					height: 100%;
-					padding: 10px;
-				}
-
-				.message-right {
-					display: flex;
-					justify-content: flex-end;
-					align-items: center;
-				}
-
-				.message-left {
-					display: flex;
-					justify-content: flex-start;
-					align-items: center;
-				}
-
-				.ant-list-item-meta-title {
-					font-weight: bold;
-				}
-
-				.ant-list-item-meta-description {
-					max-width: 70%;
-				}
-
-				.message-timestamp {
-					color: #999;
-					font-size: 12px;
-				}
-
-				.input-container {
-					display: flex;
-					align-items: center;
-					margin-top: 10px;
-				}
-
-				.ant-input {
-					flex: 1;
-					margin-right: 10px;
-				}
-
-				.ant-btn {
-					flex-shrink: 0;
-				}
-
-				.message-content {
-					word-wrap: break-word; /* Ensure message content wraps to the next line */
-				}
-
-				@media (max-width: 768px) {
-					.ant-list-item-meta-title {
-						font-size: 12px;
-					}
-				}
-			`}</style>
 		</div>
 	);
 };
