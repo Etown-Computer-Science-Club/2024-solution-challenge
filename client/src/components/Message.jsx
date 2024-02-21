@@ -1,122 +1,132 @@
-import React, { useState } from 'react';
-import { Avatar, Input, Button, List, message } from 'antd';
+import React, { useState } from "react";
+import { Avatar, Input, Button, List, message } from "antd";
 
 const Message = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [messages, setMessages] = useState([]);
+	const [inputValue, setInputValue] = useState("");
+	const [messages, setMessages] = useState([]);
+	const lastSentRef = React.useRef(null);
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
+	const handleInputChange = (e) => {
+		setInputValue(e.target.value);
+	};
 
-  const sendMessage = () => {
-    if (inputValue.trim() !== '') {
-      const newMessage = {
-        id: messages.length + 1,
-        text: inputValue,
-        sender: 'You', // You can change this to the actual sender's name or id
-        timestamp: new Date().toLocaleTimeString(),
-      };
+	const sendMessage = () => {
+		if (inputValue.trim() !== "") {
+			let newMessage;
+			if (lastSentRef.current === "Them") {
+				newMessage = {
+					id: messages.length + 2,
+					text: inputValue,
+					sender: "Thomas Leap", // You can change this to the actual sender's name or id
+					timestamp: new Date().toLocaleTimeString(),
+				};
 
-      const newMessage2 = {
-        id: messages.length + 2,
-        text: inputValue,
-        sender: 'abcd', // You can change this to the actual sender's name or id
-        timestamp: new Date().toLocaleTimeString(),
-      };
+				lastSentRef.current = "You";
+			} else {
+				newMessage = {
+					id: messages.length + 1,
+					text: inputValue,
+					sender: "You", // You can change this to the actual sender's name or id
+					timestamp: new Date().toLocaleTimeString(),
+				};
 
-      setMessages([...messages, newMessage, newMessage2]);
-      setInputValue('');
-    } else {
-      message.error('Please enter a message.');
-    }
-  };
+				lastSentRef.current = "Them";
+			}
 
-  return (
-    <div className="message-container">
-      <List
-        itemLayout="horizontal"
-        dataSource={messages}
-        renderItem={(item, index) => (
-          <List.Item className={item.sender === 'You' ? 'message-right' : 'message-left'}>
-            <List.Item.Meta
-              avatar={<Avatar>{item.sender.charAt(0)}</Avatar>}
-              title={item.sender} // Display sender's name
-              description={<div className="message-content">{item.text}</div>}
-            />
-            <div className="message-timestamp">{item.timestamp}</div>
-          </List.Item>
-        )}
-      />
-      <div className="input-container">
-        <Input
-          placeholder="Type a message..."
-          value={inputValue}
-          onChange={handleInputChange}
-          onPressEnter={sendMessage}
-        />
-        <Button type="primary" onClick={sendMessage}>Send</Button>
-      </div>
-      <style jsx>{`
-        .message-container {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          padding: 10px;
-        }
+			setMessages([...messages, newMessage]);
+			setInputValue("");
+		} else {
+			message.error("Please enter a message.");
+		}
+	};
 
-        .message-right {
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
-        }
+	return (
+		<div className="message-container">
+			<List
+				itemLayout="horizontal"
+				dataSource={messages}
+				renderItem={(item, index) => (
+					<List.Item className={item.sender === "You" ? "message-right" : "message-left"}>
+						<List.Item.Meta
+							avatar={<Avatar>{item.sender.charAt(0)}</Avatar>}
+							title={item.sender} // Display sender's name
+							description={<div className="message-content">{item.text}</div>}
+						/>
+						<div className="message-timestamp">{item.timestamp}</div>
+					</List.Item>
+				)}
+			/>
+			<div className="input-container">
+				<Input
+					placeholder="Type a message..."
+					value={inputValue}
+					onChange={handleInputChange}
+					onPressEnter={sendMessage}
+				/>
+				<Button type="primary" onClick={sendMessage}>
+					Send
+				</Button>
+			</div>
+			<style jsx>{`
+				.message-container {
+					display: flex;
+					flex-direction: column;
+					height: 100%;
+					padding: 10px;
+				}
 
-        .message-left {
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-        }
+				.message-right {
+					display: flex;
+					justify-content: flex-end;
+					align-items: center;
+				}
 
-        .ant-list-item-meta-title {
-          font-weight: bold;
-        }
+				.message-left {
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+				}
 
-        .ant-list-item-meta-description {
-          max-width: 70%;
-        }
+				.ant-list-item-meta-title {
+					font-weight: bold;
+				}
 
-        .message-timestamp {
-          color: #999;
-          font-size: 12px;
-        }
+				.ant-list-item-meta-description {
+					max-width: 70%;
+				}
 
-        .input-container {
-          display: flex;
-          align-items: center;
-          margin-top: 10px;
-        }
+				.message-timestamp {
+					color: #999;
+					font-size: 12px;
+				}
 
-        .ant-input {
-          flex: 1;
-          margin-right: 10px;
-        }
+				.input-container {
+					display: flex;
+					align-items: center;
+					margin-top: 10px;
+				}
 
-        .ant-btn {
-          flex-shrink: 0;
-        }
+				.ant-input {
+					flex: 1;
+					margin-right: 10px;
+				}
 
-        .message-content {
-          word-wrap: break-word; /* Ensure message content wraps to the next line */
-        }
+				.ant-btn {
+					flex-shrink: 0;
+				}
 
-        @media (max-width: 768px) {
-          .ant-list-item-meta-title {
-            font-size: 12px;
-          }
-        }
-      `}</style>
-    </div>
-  );
+				.message-content {
+					word-wrap: break-word; /* Ensure message content wraps to the next line */
+				}
+
+				@media (max-width: 768px) {
+					.ant-list-item-meta-title {
+						font-size: 12px;
+					}
+				}
+			`}</style>
+		</div>
+	);
 };
 
 export default Message;

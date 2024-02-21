@@ -23,7 +23,7 @@ const Posts = () => {
 				post.imageUrl = imageUrl;
 			}
 
-			setPosts([...result, ...result, ...result]);
+			setPosts(result);
 		}
 
 		getPosts();
