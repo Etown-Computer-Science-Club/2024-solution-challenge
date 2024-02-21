@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Tabs, Card, Avatar } from "antd";
-import { SettingOutlined, UserOutlined, MessageOutlined, BellOutlined } from "@ant-design/icons";
+import { Tabs } from "antd";
+import { SettingOutlined, MessageOutlined } from "@ant-design/icons";
 import Settings from "./Settings";
 import Posts from "./Posts";
 import Message from "./Message";
